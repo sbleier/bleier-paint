@@ -31,19 +31,27 @@ public class PaintFrame extends JFrame {
 
         pencilButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (isLine) {
+                if(!isPencil) {
+                    isPencil = true;
                     isLine = false;
                 }
-                isPencil = !isPencil;
+                else {
+                    isPencil = false;
+                    isLine = true;
+                }
             }
         });
 
         lineButton.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
-               if (isPencil) {
+               if(!isLine) {
+                   isLine = true;
                    isPencil = false;
                }
-               isLine = !isLine;
+               else {
+                   isLine = false;
+                   isPencil = true;
+               }
            }
         });
 
