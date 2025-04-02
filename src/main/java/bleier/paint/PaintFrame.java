@@ -11,6 +11,7 @@ public class PaintFrame extends JFrame {
     private final JButton lineButton = new JButton("Line");
     private boolean isPencil = false;
     private boolean isLine = false;
+    private final JButton colorButton = new JButton("Color");
 
     public PaintFrame() {
         setTitle("Drawing Component");
@@ -25,6 +26,7 @@ public class PaintFrame extends JFrame {
         add(canvas, BorderLayout.CENTER);
         southPanel.add(pencilButton);
         southPanel.add(lineButton);
+        southPanel.add(colorButton);
         add(southPanel, BorderLayout.SOUTH);
 
         pencilButton.addActionListener(new ActionListener() {
@@ -43,6 +45,15 @@ public class PaintFrame extends JFrame {
                }
                isLine = !isLine;
            }
+        });
+
+        colorButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Color color = JColorChooser.showDialog(null, "Choose a color", canvas.getColor());
+                if (color != null) {
+                    canvas.setColor(color);
+                }
+            }
         });
 
         canvas.addMouseMotionListener(new MouseMotionListener() {

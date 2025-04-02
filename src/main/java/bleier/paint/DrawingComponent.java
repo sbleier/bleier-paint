@@ -18,6 +18,7 @@ public class DrawingComponent extends JComponent {
     private int endx = -1;
     private int endy = -1;
     private boolean isDrawingLine = false;
+    private Color color = Color.BLACK;
 
     public DrawingComponent() {
         Graphics g = image.getGraphics();
@@ -33,15 +34,23 @@ public class DrawingComponent extends JComponent {
         g.drawImage(image, 0, 0, null);
 
         if (isDrawingLine) {
-            g.setColor(Color.BLACK);
+            g.setColor(color);
             g.drawLine(startx, starty, endx, endy);
         }
 
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
     public void drawFromMouse(int x, int y) {
         Graphics g = image.getGraphics();
-        g.setColor(Color.BLACK);
+        g.setColor(color);
         if (oldx != -1 && oldy != -1) {
             g.drawLine(oldx, oldy, x, y);
         }
@@ -65,7 +74,7 @@ public class DrawingComponent extends JComponent {
 
     public void endLine(int x, int y) {
         Graphics g = image.getGraphics();
-        g.setColor(Color.BLACK);
+        g.setColor(color);
         if (startx != -1 && starty != -1) {
             g.drawLine(startx, starty, x, y);
         }
