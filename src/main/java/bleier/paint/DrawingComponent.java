@@ -15,7 +15,7 @@ public class DrawingComponent extends JComponent {
             BufferedImage.TYPE_INT_RGB
     );
 
-    private PencilTool pencilTool = new PencilTool();
+    private Tool tool;
 
     private int startx = -1;
     private int starty = -1;
@@ -37,10 +37,7 @@ public class DrawingComponent extends JComponent {
 
         g.drawImage(image, 0, 0, null);
 
-        if (isDrawingLine) {
-            g.setColor(color);
-            g.drawLine(startx, starty, endx, endy);
-        }
+        tool.preview(g);
 
     }
 
@@ -52,10 +49,14 @@ public class DrawingComponent extends JComponent {
         return color;
     }
 
+    public void setTool(Tool tool) {
+        this.tool = tool;
+    }
+
     public void drawFromMouse(int x, int y) {
         Graphics g = image.getGraphics();
         g.setColor(color);
-        pencilTool.dragged(g, x, y);
+        tool.dragged(g, x, y);
         repaint();
 
     }

@@ -34,4 +34,9 @@ public class PencilTool implements Tool{
     public void released(Graphics g, int x, int y) {
 
     }
+
+    @Override
+    public void preview(Graphics g) {
+
+    }
 }
