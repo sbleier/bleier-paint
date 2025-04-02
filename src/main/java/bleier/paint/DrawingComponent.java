@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/*
+* Draw the BufferedImage to the screen.
+ */
 public class DrawingComponent extends JComponent {
 
     private final BufferedImage image = new BufferedImage(
@@ -11,8 +14,9 @@ public class DrawingComponent extends JComponent {
             600,
             BufferedImage.TYPE_INT_RGB
     );
-    private int oldx = -1;
-    private int oldy = -1;
+
+    private PencilTool pencilTool = new PencilTool();
+
     private int startx = -1;
     private int starty = -1;
     private int endx = -1;
@@ -51,11 +55,7 @@ public class DrawingComponent extends JComponent {
     public void drawFromMouse(int x, int y) {
         Graphics g = image.getGraphics();
         g.setColor(color);
-        if (oldx != -1 && oldy != -1) {
-            g.drawLine(oldx, oldy, x, y);
-        }
-        oldx = x;
-        oldy = y;
+        pencilTool.dragged(g, x, y);
         repaint();
 
     }
@@ -85,8 +85,8 @@ public class DrawingComponent extends JComponent {
         repaint();
     }
 
-    public void reset() {
-        oldx = -1;
-        oldy = -1;
+
+    public BufferedImage getImage() {
+        return image;
     }
 }

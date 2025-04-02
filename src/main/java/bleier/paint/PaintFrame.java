@@ -13,6 +13,8 @@ public class PaintFrame extends JFrame {
     private boolean isLine = false;
     private final JButton colorButton = new JButton("Color");
 
+    private PencilTool pencilTool = new PencilTool();
+
     public PaintFrame() {
         setTitle("Drawing Component");
 
@@ -64,12 +66,15 @@ public class PaintFrame extends JFrame {
 
         canvas.addMouseMotionListener(new MouseMotionListener() {
             @Override
-            public void mouseDragged(MouseEvent event) {
+            public void mouseDragged(MouseEvent e) {
                 if (isPencil) {
-                    canvas.drawFromMouse(event.getX(), event.getY());
+                    Graphics g = canvas.getImage().getGraphics();
+                    g.setColor(Color.BLACK);
+                    pencilTool.dragged(g, e.getX(), e.getY());
+                    canvas.repaint();
                 }
                 if (isLine) {
-                    canvas.drawLine(event.getX(), event.getY());
+                    canvas.drawLine(e.getX(), e.getY());
                 }
             }
 
@@ -91,7 +96,10 @@ public class PaintFrame extends JFrame {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (isPencil) {
-                    canvas.reset();
+                    Graphics g = canvas.getImage().getGraphics();
+                    g.setColor(Color.BLACK);
+                    pencilTool.pressed(g, e.getX(), e.getY());
+                    canvas.repaint();
                 }
                 if (isLine) {
                     canvas.startLine(e.getX(), e.getY());
@@ -100,6 +108,12 @@ public class PaintFrame extends JFrame {
 
             @Override
             public void mouseReleased(MouseEvent e) {
+                if (isPencil) {
+                    Graphics g = canvas.getImage().getGraphics();
+                    g.setColor(Color.BLACK);
+                    pencilTool.released(g, e.getX(), e.getY());
+                    canvas.repaint();
+                }
                 if (isLine) {
                     canvas.endLine(e.getX(), e.getY());
                 }
