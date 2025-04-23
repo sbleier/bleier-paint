@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/*
+* Draw the BufferedImage to the screen.
+ */
 public class DrawingComponent extends JComponent {
 
     private final BufferedImage image = new BufferedImage(
@@ -11,13 +14,8 @@ public class DrawingComponent extends JComponent {
             600,
             BufferedImage.TYPE_INT_RGB
     );
-    private int oldx = -1;
-    private int oldy = -1;
-    private int startx = -1;
-    private int starty = -1;
-    private int endx = -1;
-    private int endy = -1;
-    private boolean isDrawingLine = false;
+
+    private Tool tool;
     private Color color = Color.BLACK;
 
     public DrawingComponent() {
@@ -33,9 +31,8 @@ public class DrawingComponent extends JComponent {
 
         g.drawImage(image, 0, 0, null);
 
-        if (isDrawingLine) {
-            g.setColor(color);
-            g.drawLine(startx, starty, endx, endy);
+        if (tool != null) {
+            tool.preview(g);
         }
 
     }
@@ -48,14 +45,14 @@ public class DrawingComponent extends JComponent {
         return color;
     }
 
-    public void drawFromMouse(int x, int y) {
+    public void setTool(Tool tool) {
+        this.tool = tool;
+    }
+
+    /*public void drawFromMouse(int x, int y) {
         Graphics g = image.getGraphics();
         g.setColor(color);
-        if (oldx != -1 && oldy != -1) {
-            g.drawLine(oldx, oldy, x, y);
-        }
-        oldx = x;
-        oldy = y;
+        tool.dragged(g, x, y);
         repaint();
 
     }
@@ -83,10 +80,10 @@ public class DrawingComponent extends JComponent {
         endx = -1;
         endy = -1;
         repaint();
-    }
+    } */
 
-    public void reset() {
-        oldx = -1;
-        oldy = -1;
+
+    public BufferedImage getImage() {
+        return image;
     }
 }

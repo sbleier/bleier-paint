@@ -9,9 +9,11 @@ public class PaintFrame extends JFrame {
     private final DrawingComponent canvas = new DrawingComponent();
     private final JButton pencilButton = new JButton("Pencil");
     private final JButton lineButton = new JButton("Line");
-    private boolean isPencil = false;
-    private boolean isLine = false;
+    private final JButton eraserButton = new JButton("Eraser");
     private final JButton colorButton = new JButton("Color");
+    private final PaintController controller;
+
+    //private Tool tool;
 
     public PaintFrame() {
         setTitle("Drawing Component");
@@ -22,35 +24,45 @@ public class PaintFrame extends JFrame {
         setLayout(new BorderLayout());
 
         JPanel southPanel = new JPanel();
-        southPanel.setLayout(new GridLayout(3, 1));
+        southPanel.setLayout(new GridLayout(4, 1));
         add(canvas, BorderLayout.CENTER);
         southPanel.add(pencilButton);
         southPanel.add(lineButton);
+        southPanel.add(eraserButton);
         southPanel.add(colorButton);
         add(southPanel, BorderLayout.SOUTH);
 
+        controller = new PaintController(canvas);
+
+
+
         pencilButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (!isPencil) {
-                    isPencil = true;
-                    isLine = false;
-                } else {
-                    isPencil = false;
-                    isLine = true;
-                }
+                controller.setTool(new PencilTool());
+
             }
         });
 
         lineButton.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
-               if (!isLine) {
-                   isLine = true;
-                   isPencil = false;
-               } else {
-                   isLine = false;
-                   isPencil = true;
-               }
+               controller.setTool(new LineTool());
+               //canvas.setTool(new LineTool());
+
            }
+        });
+
+        eraserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JSpinner sizeSpinner = new JSpinner(new SpinnerNumberModel(20, 5, 100, 1));
+                int result = JOptionPane.showConfirmDialog(
+                        null, sizeSpinner, "Select Eraser Size", JOptionPane.OK_CANCEL_OPTION);
+                if (result == JOptionPane.OK_OPTION) {
+                    int size = (Integer) sizeSpinner.getValue();
+                    controller.setTool(new EraserTool(size));
+                    //canvas.setTool(new EraserTool(size));
+                }
+
+            }
         });
 
         colorButton.addActionListener(new ActionListener() {
@@ -62,15 +74,15 @@ public class PaintFrame extends JFrame {
             }
         });
 
+        /*
         canvas.addMouseMotionListener(new MouseMotionListener() {
             @Override
-            public void mouseDragged(MouseEvent event) {
-                if (isPencil) {
-                    canvas.drawFromMouse(event.getX(), event.getY());
-                }
-                if (isLine) {
-                    canvas.drawLine(event.getX(), event.getY());
-                }
+            public void mouseDragged(MouseEvent e) {
+                    Graphics g = canvas.getImage().getGraphics();
+                    g.setColor(Color.BLACK);
+                    tool.dragged(g, e.getX(), e.getY());
+                    canvas.repaint();
+
             }
 
             @Override
@@ -82,27 +94,23 @@ public class PaintFrame extends JFrame {
         canvas.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (isPencil) {
-                    canvas.drawFromMouse(e.getX(), e.getY());
-                }
 
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if (isPencil) {
-                    canvas.reset();
-                }
-                if (isLine) {
-                    canvas.startLine(e.getX(), e.getY());
-                }
+                    Graphics g = canvas.getImage().getGraphics();
+                    g.setColor(Color.BLACK);
+                    tool.pressed(g, e.getX(), e.getY());
+                    canvas.repaint();
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                if (isLine) {
-                    canvas.endLine(e.getX(), e.getY());
-                }
+                    Graphics g = canvas.getImage().getGraphics();
+                    g.setColor(Color.BLACK);
+                    tool.released(g, e.getX(), e.getY());
+                    canvas.repaint();
             }
 
             @Override
@@ -115,6 +123,7 @@ public class PaintFrame extends JFrame {
 
             }
         });
+        */
 
     }
 
