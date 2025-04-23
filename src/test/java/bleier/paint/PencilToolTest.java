@@ -39,10 +39,6 @@ class PencilToolTest {
         verify(g).drawLine(50, 100, 200, 150);
     }
 
-    @Test
-    void released() {
-
-    }
 
 
 

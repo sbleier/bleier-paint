@@ -46,7 +46,7 @@ public class PaintFrame extends JFrame {
         lineButton.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
                controller.setTool(new LineTool());
-               canvas.setTool(new LineTool());
+               //canvas.setTool(new LineTool());
 
            }
         });
@@ -59,7 +59,7 @@ public class PaintFrame extends JFrame {
                 if (result == JOptionPane.OK_OPTION) {
                     int size = (Integer) sizeSpinner.getValue();
                     controller.setTool(new EraserTool(size));
-                    canvas.setTool(new EraserTool(size));
+                    //canvas.setTool(new EraserTool(size));
                 }
 
             }

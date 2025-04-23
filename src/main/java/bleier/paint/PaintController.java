@@ -70,5 +70,6 @@ public class PaintController {
 
     public void setTool(Tool tool) {
         this.tool = tool;
+        canvas.setTool(tool);
     }
 }
