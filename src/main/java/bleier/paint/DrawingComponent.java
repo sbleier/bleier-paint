@@ -31,7 +31,7 @@ public class DrawingComponent extends JComponent {
 
         g.drawImage(image, 0, 0, null);
 
-        if(tool != null) {
+        if (tool != null) {
             tool.preview(g);
         }
 

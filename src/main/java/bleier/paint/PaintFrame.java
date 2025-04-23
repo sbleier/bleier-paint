@@ -73,54 +73,56 @@ public class PaintFrame extends JFrame {
             }
         });
 
-//        canvas.addMouseMotionListener(new MouseMotionListener() {
-//            @Override
-//            public void mouseDragged(MouseEvent e) {
-//                    Graphics g = canvas.getImage().getGraphics();
-//                    g.setColor(Color.BLACK);
-//                    tool.dragged(g, e.getX(), e.getY());
-//                    canvas.repaint();
-//
-//            }
-//
-//            @Override
-//            public void mouseMoved(MouseEvent event) {
-//
-//            }
-//        });
-//
-//        canvas.addMouseListener(new MouseListener() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//
-//            }
-//
-//            @Override
-//            public void mousePressed(MouseEvent e) {
-//                    Graphics g = canvas.getImage().getGraphics();
-//                    g.setColor(Color.BLACK);
-//                    tool.pressed(g, e.getX(), e.getY());
-//                    canvas.repaint();
-//            }
-//
-//            @Override
-//            public void mouseReleased(MouseEvent e) {
-//                    Graphics g = canvas.getImage().getGraphics();
-//                    g.setColor(Color.BLACK);
-//                    tool.released(g, e.getX(), e.getY());
-//                    canvas.repaint();
-//            }
-//
-//            @Override
-//            public void mouseEntered(MouseEvent e) {
-//
-//            }
-//
-//            @Override
-//            public void mouseExited(MouseEvent e) {
-//
-//            }
-//        });
+        /*
+        canvas.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                    Graphics g = canvas.getImage().getGraphics();
+                    g.setColor(Color.BLACK);
+                    tool.dragged(g, e.getX(), e.getY());
+                    canvas.repaint();
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent event) {
+
+            }
+        });
+
+        canvas.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                    Graphics g = canvas.getImage().getGraphics();
+                    g.setColor(Color.BLACK);
+                    tool.pressed(g, e.getX(), e.getY());
+                    canvas.repaint();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                    Graphics g = canvas.getImage().getGraphics();
+                    g.setColor(Color.BLACK);
+                    tool.released(g, e.getX(), e.getY());
+                    canvas.repaint();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        */
 
     }
 

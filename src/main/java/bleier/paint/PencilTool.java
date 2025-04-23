@@ -2,7 +2,7 @@ package bleier.paint;
 
 import java.awt.*;
 
-public class PencilTool implements Tool{
+public class PencilTool implements Tool {
 
 
     private int x;
@@ -20,7 +20,7 @@ public class PencilTool implements Tool{
     public void pressed(Graphics g, int x, int y) {
         this.x = x;
         this.y = y;
-        g.drawLine(x,y,x,y);
+        g.drawLine(x, y, x, y);
     }
 
     @Override
