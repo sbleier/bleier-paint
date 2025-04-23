@@ -4,9 +4,9 @@ import java.awt.*;
 
 public class EraserTool implements Tool {
 
-    int x;
-    int y;
-    int size;
+    private int x;
+    private int y;
+    private int size;
 
     //constructor to set oval size;
     public EraserTool(int size) {
@@ -31,6 +31,7 @@ public class EraserTool implements Tool {
 
     }
 
+    //when mouse dragged, oval is outlined in black so user knows where mouse is
     @Override
     public void preview(Graphics g) {
         g.setColor(Color.BLACK);
@@ -43,7 +44,7 @@ public class EraserTool implements Tool {
         g.setColor(Color.WHITE);
         g.fillOval(x - size / 2, y - size / 2, size, size);
 
-        //erase last preview
+        //this changes last x and y so previewed outline disappears - I couldn't figure out a smarter way
         this.x = -100;
         this.y = -100;
 
