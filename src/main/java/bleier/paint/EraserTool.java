@@ -9,7 +9,7 @@ public class EraserTool implements Tool {
     int size;
 
     //constructor to set oval size;
-    public EraserTool(int size){
+    public EraserTool(int size) {
         this.size = size;
     }
 

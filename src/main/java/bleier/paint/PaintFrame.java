@@ -54,7 +54,8 @@ public class PaintFrame extends JFrame {
         eraserButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JSpinner sizeSpinner = new JSpinner(new SpinnerNumberModel(20, 5, 100, 1));
-                int result = JOptionPane.showConfirmDialog(null, sizeSpinner, "Select Eraser Size", JOptionPane.OK_CANCEL_OPTION);
+                int result = JOptionPane.showConfirmDialog(
+                        null, sizeSpinner, "Select Eraser Size", JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
                     int size = (Integer) sizeSpinner.getValue();
                     controller.setTool(new EraserTool(size));
