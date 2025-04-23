@@ -16,12 +16,6 @@ public class DrawingComponent extends JComponent {
     );
 
     private Tool tool;
-
-    private int startx = -1;
-    private int starty = -1;
-    private int endx = -1;
-    private int endy = -1;
-    private boolean isDrawingLine = false;
     private Color color = Color.BLACK;
 
     public DrawingComponent() {
@@ -37,7 +31,9 @@ public class DrawingComponent extends JComponent {
 
         g.drawImage(image, 0, 0, null);
 
-        tool.preview(g);
+        if(tool != null) {
+            tool.preview(g);
+        }
 
     }
 
@@ -53,7 +49,7 @@ public class DrawingComponent extends JComponent {
         this.tool = tool;
     }
 
-    public void drawFromMouse(int x, int y) {
+    /*public void drawFromMouse(int x, int y) {
         Graphics g = image.getGraphics();
         g.setColor(color);
         tool.dragged(g, x, y);
@@ -84,7 +80,7 @@ public class DrawingComponent extends JComponent {
         endx = -1;
         endy = -1;
         repaint();
-    }
+    } */
 
 
     public BufferedImage getImage() {

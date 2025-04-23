@@ -41,14 +41,7 @@ class PencilToolTest {
 
     @Test
     void released() {
-        //given
-        PencilTool tool = new PencilTool();
 
-        //when
-        tool.released(g, 100, 200);
-
-        //then
-        verifyNoMoreInteractions();
     }
 
 

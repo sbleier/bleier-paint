@@ -7,6 +7,9 @@ public class LineTool implements Tool{
     private int x1;
     private int y1;
     private int x2;
+
+
+
     private int y2;
 
     @Override
@@ -40,5 +43,13 @@ public class LineTool implements Tool{
 
     public int getY() {
         return y1;
+    }
+
+    public int getY2() {
+        return y2;
+    }
+
+    public int getX2() {
+        return x2;
     }
 }
