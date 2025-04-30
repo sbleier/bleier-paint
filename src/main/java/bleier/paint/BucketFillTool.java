@@ -39,8 +39,8 @@ public class BucketFillTool implements Tool {
     }
 
     public void fillBucket(BufferedImage image, int x, int y, int target, int replace) {
-        if (x < 0 || x >= image.getWidth() || y < 0 ||
-                y >= image.getHeight() || image.getRGB(x, y) != target || fillCount > 1000) {
+        if (x < 0 || x >= image.getWidth() || y < 0
+                || y >= image.getHeight() || image.getRGB(x, y) != target || fillCount > 1000) {
             fillCount = 0;
             return;
         }
