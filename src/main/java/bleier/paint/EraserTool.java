@@ -12,7 +12,7 @@ public class EraserTool implements Tool {
 
     //constructor to set oval size;
     public EraserTool(int size) {
-        stroke = new BasicStroke (size);
+        stroke = new BasicStroke(size);
     }
 
     @Override
