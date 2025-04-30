@@ -11,6 +11,7 @@ public class PaintFrame extends JFrame {
     private final JButton lineButton = new JButton("Line");
     private final JButton eraserButton = new JButton("Eraser");
     private final JButton colorButton = new JButton("Color");
+    private final JButton bucketButton = new JButton("Bucket");
     private final PaintController controller;
 
     //private Tool tool;
@@ -24,12 +25,13 @@ public class PaintFrame extends JFrame {
         setLayout(new BorderLayout());
 
         JPanel southPanel = new JPanel();
-        southPanel.setLayout(new GridLayout(4, 1));
+        southPanel.setLayout(new GridLayout(5, 1));
         add(canvas, BorderLayout.CENTER);
         southPanel.add(pencilButton);
         southPanel.add(lineButton);
         southPanel.add(eraserButton);
         southPanel.add(colorButton);
+        southPanel.add(bucketButton);
         add(southPanel, BorderLayout.SOUTH);
 
         controller = new PaintController(canvas);
@@ -74,56 +76,14 @@ public class PaintFrame extends JFrame {
             }
         });
 
-        /*
-        canvas.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                    Graphics g = canvas.getImage().getGraphics();
-                    g.setColor(Color.BLACK);
-                    tool.dragged(g, e.getX(), e.getY());
-                    canvas.repaint();
-
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent event) {
+        bucketButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.setTool(new BucketFillTool());
 
             }
         });
 
-        canvas.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
 
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                    Graphics g = canvas.getImage().getGraphics();
-                    g.setColor(Color.BLACK);
-                    tool.pressed(g, e.getX(), e.getY());
-                    canvas.repaint();
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                    Graphics g = canvas.getImage().getGraphics();
-                    g.setColor(Color.BLACK);
-                    tool.released(g, e.getX(), e.getY());
-                    canvas.repaint();
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-        */
 
     }
 

@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 
 class EraserToolTest {
 
-    private Graphics g = mock();
+    private Graphics2D g = mock();
 
     @Test
     void pressed() {

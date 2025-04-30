@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 
 public class PaintController {
     private Tool tool;
@@ -21,8 +22,8 @@ public class PaintController {
         canvas.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                Graphics g = canvas.getImage().getGraphics();
-                g.setColor(Color.BLACK);
+                Graphics2D g = (Graphics2D) canvas.getImage().getGraphics();
+                g.setColor(canvas.getColor());
                 tool.dragged(g, e.getX(), e.getY());
                 canvas.repaint();
 
@@ -42,16 +43,17 @@ public class PaintController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                Graphics g = canvas.getImage().getGraphics();
-                g.setColor(Color.BLACK);
-                tool.pressed(g, e.getX(), e.getY());
+                BufferedImage image = canvas.getImage();
+                Graphics2D g = (Graphics2D) canvas.getImage().getGraphics();
+                g.setColor(canvas.getColor());
+                tool.pressed(image, g, e.getX(), e.getY());
                 canvas.repaint();
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                Graphics g = canvas.getImage().getGraphics();
-                g.setColor(Color.BLACK);
+                Graphics2D g = (Graphics2D) canvas.getImage().getGraphics();
+                g.setColor(canvas.getColor());
                 tool.released(g, e.getX(), e.getY());
                 canvas.repaint();
             }
