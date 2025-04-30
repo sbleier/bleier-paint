@@ -9,6 +9,7 @@ public class BucketFillTool implements Tool {
     private int y;
     private int target;
     private int replace;
+    private int fillCount;
 
     @Override
     public void pressed(BufferedImage image, Graphics2D g, int x, int y) {
@@ -38,9 +39,11 @@ public class BucketFillTool implements Tool {
     }
 
     public void fillBucket(BufferedImage image, int x, int y, int target, int replace) {
-        if (x < 0 || x >= image.getWidth() || y < 0 || y >= image.getHeight() || image.getRGB(x, y) != target) {
+        if (x < 0 || x >= image.getWidth() || y < 0 || y >= image.getHeight() || image.getRGB(x, y) != target || fillCount > 1000) {
+            fillCount = 0;
             return;
         }
+        fillCount++;
         image.setRGB(x, y, replace);
 
         fillBucket(image, x + 1, y, target, replace);
