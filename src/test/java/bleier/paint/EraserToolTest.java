@@ -3,6 +3,7 @@ package bleier.paint;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -11,6 +12,11 @@ import static org.mockito.Mockito.verify;
 class EraserToolTest {
 
     private Graphics2D g = mock();
+    private final BufferedImage image = new BufferedImage(
+            800,
+            600,
+            BufferedImage.TYPE_INT_RGB
+    );
 
     @Test
     void pressed() {
@@ -18,7 +24,7 @@ class EraserToolTest {
         EraserTool tool = new EraserTool(20);
 
         //when
-        tool.pressed(g, 50, 100);
+        tool.pressed(image, g, 50, 100);
 
         //then
         assertEquals(50, tool.getX());
@@ -46,7 +52,7 @@ class EraserToolTest {
     void preview() {
         //given
         EraserTool tool = new EraserTool(20);
-        tool.pressed(g, 50, 100);
+        tool.pressed(image, g, 50, 100);
 
         //when
         tool.preview(g);
