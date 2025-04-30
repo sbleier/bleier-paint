@@ -3,6 +3,7 @@ package bleier.paint;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -10,7 +11,12 @@ import static org.mockito.Mockito.verify;
 
 class LineToolTest {
 
-    private Graphics g = mock();
+    private Graphics2D g = mock();
+    private final BufferedImage image = new BufferedImage(
+            800,
+            600,
+            BufferedImage.TYPE_INT_RGB
+    );
 
     @Test
     void pressed() {
@@ -18,7 +24,7 @@ class LineToolTest {
         LineTool tool = new LineTool();
 
         //when
-        tool.pressed(g, 50, 100);
+        tool.pressed(image, g, 50, 100);
 
         //then
         assertEquals(50, tool.getX());
@@ -31,7 +37,7 @@ class LineToolTest {
     void dragged() {
         //given
         LineTool tool = new LineTool();
-        tool.pressed(g, 50, 100);
+        tool.pressed(image, g, 50, 100);
 
         //when
         tool.dragged(g, 200, 150);
@@ -47,7 +53,7 @@ class LineToolTest {
     void released() {
         //given
         LineTool tool = new LineTool();
-        tool.pressed(g, 50, 100);
+        tool.pressed(image, g, 50, 100);
 
         //when
         tool.released(g, 200, 150);
@@ -60,7 +66,7 @@ class LineToolTest {
     void preview() {
         //given
         LineTool tool = new LineTool();
-        tool.pressed(g, 50, 100);
+        tool.pressed(image, g, 50, 100);
         tool.dragged(g, 200, 150);
 
         //when
